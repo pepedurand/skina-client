@@ -3,7 +3,7 @@ import { Box, Icon } from "@chakra-ui/react";
 const isStoreOpened = () => {
   const today = new Date();
   const currentTime = {
-    hours: today.getHours(),
+    hours: 17,
     minutes: today.getMinutes(),
     seconds: today.getSeconds(),
   };
@@ -17,24 +17,21 @@ const isStoreOpened = () => {
     minutes: 30,
     seconds: 0,
   };
-  if (currentTime.hours === openingTime.hours) {
-    if (currentTime.minutes > openingTime.minutes) {
-      return true;
-    }
-  }
-  if (currentTime.hours === closingTime.hours) {
-    if (currentTime.minutes < closingTime.minutes) {
-      return true;
-    }
-  }
   if (
-    currentTime.hours > openingTime.hours &&
-    currentTime.hours < closingTime.hours
+    (currentTime.hours === openingTime.hours &&
+      currentTime.minutes > openingTime.minutes) ||
+    (currentTime.hours === closingTime.hours &&
+      currentTime.minutes < closingTime.minutes) ||
+    (currentTime.hours > openingTime.hours &&
+      currentTime.hours < closingTime.hours)
   ) {
     return true;
   }
   return false;
 };
+
+const openedMessage = "Estamos abertos, vamos até as 23h30.";
+const closedMessage = "Estamos fechados, abrimos as 17h30.";
 
 export const OpeningTime = () => {
   return (
@@ -54,11 +51,7 @@ export const OpeningTime = () => {
           d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
         />
       </Icon>
-      {isStoreOpened() ? (
-        <>Estamos abertos, vamos até as 23h30.</>
-      ) : (
-        <>Estamos fechados, abrimos as 17h30.</>
-      )}
+      {isStoreOpened() ? openedMessage : closedMessage}
     </Box>
   );
 };
