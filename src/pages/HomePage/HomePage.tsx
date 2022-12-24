@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import { Header } from "../../components";
+import { Header, OpeningTime } from "../../components";
 
 export const HomePage = () => {
   return (
     <Box>
       <Header />
+      <OpeningTime />
     </Box>
   );
 };
