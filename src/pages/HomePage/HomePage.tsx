@@ -5,8 +5,16 @@ import {
   ItemCard,
   OpeningTime,
 } from "../../components";
+import { useRequest } from "../../hooks/useRequest";
+import { getCombos, getDrinks, getPizzas } from "../../services";
 
 export const HomePage = () => {
+  const drinks = useRequest(getDrinks());
+  const pizzas = useRequest(getPizzas());
+  const combos = useRequest(getCombos());
+
+  console.log(drinks, pizzas, combos);
+
   return (
     <>
       <Header />
