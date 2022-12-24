@@ -1,11 +1,15 @@
 import { Box, Collapse, Text, useDisclosure } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
-export const CollapsibleMenu = () => {
+interface CollapsibleMenuProps {
+  title: string;
+}
+
+export const CollapsibleMenu = ({ title }: CollapsibleMenuProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box maxW="300px">
+    <Box w="300px" margin="10px 20px">
       <Box
         onClick={onToggle}
         display="flex"
@@ -16,12 +20,12 @@ export const CollapsibleMenu = () => {
         color="#901313"
       >
         <Text fontFamily="Fugaz One" fontSize="30px">
-          Pizzas
+          {title}
         </Text>
-        {isOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+        {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </Box>
       <Collapse in={isOpen} animateOpacity>
-        <Box bgColor="grey">oaskjdaosdjaosdj</Box>
+        <Box bgColor="grey">{title}</Box>
       </Collapse>
     </Box>
   );
