@@ -1,5 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { CollapsibleMenu, Header, OpeningTime } from "../../components";
+import {
+  CollapsibleMenu,
+  Header,
+  ItemCard,
+  OpeningTime,
+} from "../../components";
 
 export const HomePage = () => {
   return (
@@ -7,9 +12,9 @@ export const HomePage = () => {
       <Header />
       <OpeningTime />
       <Box display="flex" flexWrap="wrap" justifyContent="center">
-        <CollapsibleMenu title="Pizzas" />
-        <CollapsibleMenu title="Pizzas" />
-        <CollapsibleMenu title="Pizzas" />
+        <CollapsibleMenu title="Pizzas" children={ItemCard()} />
+        <CollapsibleMenu title="Pizzas" children={ItemCard()} />
+        <CollapsibleMenu title="Pizzas" children={ItemCard()} />
       </Box>
     </>
   );

@@ -3,15 +3,17 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 interface CollapsibleMenuProps {
   title: string;
+  children: JSX.Element;
 }
 
-export const CollapsibleMenu = ({ title }: CollapsibleMenuProps) => {
+export const CollapsibleMenu = ({ title, children }: CollapsibleMenuProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Box w="300px" margin="10px 20px">
       <Box
         onClick={onToggle}
+        cursor="pointer"
         display="flex"
         justifyContent="space-between"
         alignItems="center"
@@ -25,7 +27,7 @@ export const CollapsibleMenu = ({ title }: CollapsibleMenuProps) => {
         {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </Box>
       <Collapse in={isOpen} animateOpacity>
-        <Box bgColor="grey">{title}</Box>
+        <Box>{children}</Box>
       </Collapse>
     </Box>
   );

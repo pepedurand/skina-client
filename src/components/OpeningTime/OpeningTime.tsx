@@ -3,7 +3,7 @@ import { Box, Icon } from "@chakra-ui/react";
 const isStoreOpened = () => {
   const today = new Date();
   const currentTime = {
-    hours: 17,
+    hours: today.getHours(),
     minutes: today.getMinutes(),
     seconds: today.getSeconds(),
   };
