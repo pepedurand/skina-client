@@ -3,7 +3,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 interface CollapsibleMenuProps {
   title: string;
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 }
 
 export const CollapsibleMenu = ({ title, children }: CollapsibleMenuProps) => {
@@ -18,7 +18,7 @@ export const CollapsibleMenu = ({ title, children }: CollapsibleMenuProps) => {
         justifyContent="space-between"
         alignItems="center"
         padding="10px"
-        bgColor="orange"
+        bgColor="#FFB800"
         color="#901313"
       >
         <Text fontFamily="Fugaz One" fontSize="30px">

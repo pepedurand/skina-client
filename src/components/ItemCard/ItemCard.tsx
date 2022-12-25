@@ -8,7 +8,7 @@ interface ItemCardProps {
 
 export const ItemCard = ({ title, details, price }: ItemCardProps) => {
   return (
-    <Box alignItems="center" padding="10px" height="101px">
+    <Box alignItems="center" padding="10px" height="101px" bgColor="#FFB800">
       <Box
         display="flex"
         alignItems="center"

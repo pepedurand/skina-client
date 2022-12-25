@@ -3,3 +3,4 @@ export * from "./Header";
 export * from "./OpeningTime";
 export * from "./CollapsibleMenu";
 export * from "./ItemCard";
+export * from "./CategoryCard";

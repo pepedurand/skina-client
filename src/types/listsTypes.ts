@@ -18,3 +18,10 @@ export interface ComboData {
   description: string;
   price: number;
 }
+
+export interface SizeData {
+  size_id: string;
+  size: string;
+  description: string;
+  price: number;
+}
