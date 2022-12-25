@@ -2,11 +2,11 @@ import { Box, Text } from "@chakra-ui/react";
 
 interface ItemCardProps {
   title: string;
-  description: string;
+  details: string;
   price: number;
 }
 
-export const ItemCard = ({ title, description, price }: ItemCardProps) => {
+export const ItemCard = ({ title, details, price }: ItemCardProps) => {
   return (
     <Box alignItems="center" padding="10px" height="101px">
       <Box
@@ -22,7 +22,7 @@ export const ItemCard = ({ title, description, price }: ItemCardProps) => {
         </Text>
       </Box>
       <Text width="200px" height="48px" fontSize="14px">
-        {description}
+        {details}
       </Text>
     </Box>
   );
