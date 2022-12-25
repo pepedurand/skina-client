@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect } from "react";
 import {
   CollapsibleMenu,
   Header,
@@ -7,24 +6,21 @@ import {
   OpeningTime,
 } from "../../components";
 import { useRequest } from "../../hooks";
-import { getPizzas } from "../../services";
-// import { pizzas, drinks, combos } from "../../mocks";
+import { getCombos, getDrinks, getPizzas } from "../../services";
 import { ComboData, DrinkData, PizzaData } from "../../types/";
-
-// const pizzas = useRequest(getPizzas());
 
 export const HomePage = () => {
   const pizzas = useRequest(getPizzas());
+  const drinks = useRequest(getDrinks());
+  const combos = useRequest(getCombos());
 
   return (
     <>
       <Header />
       <OpeningTime />
-      <button onClick={() => console.log(pizzas)}>load pizzas</button>
       <Box display="flex" flexWrap="wrap" justifyContent="center">
-        <CollapsibleMenu
-          title="Pizzas"
-          children={pizzas.map((data: PizzaData) => {
+        <CollapsibleMenu title="Pizzas">
+          {pizzas.map((data: PizzaData) => {
             return (
               <ItemCard
                 details={data.description}
@@ -33,8 +29,8 @@ export const HomePage = () => {
               />
             );
           })}
-        />
-        {/* <CollapsibleMenu
+        </CollapsibleMenu>
+        <CollapsibleMenu
           title="Drinks"
           children={drinks.map((data: DrinkData) => {
             return (
@@ -57,7 +53,7 @@ export const HomePage = () => {
               />
             );
           })}
-        /> */}
+        />
       </Box>
     </>
   );

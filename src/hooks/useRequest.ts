@@ -1,19 +1,15 @@
-import { AxiosResponse } from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export const useRequest = (
-  requisition: Promise<AxiosResponse<any, any> | undefined>
-): any[] => {
-  const [items, setItems] = useState([]);
+export const useRequest = (requisition: any) => {
+  const [items, setItems] = useState<any[] | []>([]);
 
-  const itemList = async () => {
+  const loadItemList = async () => {
     const response = await requisition;
-    setItems(response?.data);
+    setItems(response);
   };
 
   useEffect(() => {
-    itemList();
+    loadItemList();
   }, []);
-  console.log(items);
   return items;
 };
