@@ -1,4 +1,4 @@
-import { Box, useDisclosure } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import {
   CategoryCard,
   CollapsibleMenu,
@@ -23,8 +23,6 @@ import {
 } from "../../types/";
 
 export const HomePage = () => {
-  const { isOpen, onToggle } = useDisclosure();
-
   const pizzas = useRequest(getPizzas());
   const drinks = useRequest(getDrinks());
   const combos = useRequest(getCombos());
@@ -42,8 +40,6 @@ export const HomePage = () => {
               <CategoryCard
                 size={size.size}
                 price={size.price}
-                onToggle={onToggle}
-                isOpen={isOpen}
                 description={size.description}
               >
                 {pizzas.map((data: PizzaData) => {

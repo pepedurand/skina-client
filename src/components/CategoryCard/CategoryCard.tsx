@@ -8,8 +8,6 @@ interface CategoryCardProps {
   size: string;
   description: string;
   price: number;
-  isOpen: boolean;
-  onToggle: () => void;
 }
 
 export const CategoryCard = ({
@@ -17,29 +15,20 @@ export const CategoryCard = ({
   size,
   description,
   price,
-  isOpen,
-  onToggle,
 }: CategoryCardProps) => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const menuIdentifier = () => {
     setSelectedCategory(size);
-    if (selectedCategory === size) {
-      setSelectedCategory("");
-    }
+    selectedCategory === size ?? setSelectedCategory("");
   };
 
   const isMenuOpened = () => {
-    if (selectedCategory === SIZES.BROTO) {
-      return true;
-    }
-    if (selectedCategory === SIZES.FAMILIA) {
-      return true;
-    }
-    if (selectedCategory === SIZES.MEDIA) {
-      return true;
-    }
-    if (selectedCategory === SIZES.SUPERGG) {
+    if (
+      [SIZES.BROTO, SIZES.FAMILIA, SIZES.MEDIA, SIZES.SUPERGG].includes(
+        selectedCategory as SIZES
+      )
+    ) {
       return true;
     } else return false;
   };
