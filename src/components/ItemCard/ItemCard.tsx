@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 interface ItemCardProps {
   title: string;
-  details: string;
+  details?: string;
   price: number;
   basePrice?: number;
 }
@@ -27,9 +27,11 @@ export const ItemCard = ({
           R$ {basePrice ? price + basePrice : price}
         </Text>
       </Box>
-      <Text width="200px" height="48px" fontSize="14px">
-        {details}
-      </Text>
+      {details ?? (
+        <Text width="200px" height="48px" fontSize="14px">
+          {details}
+        </Text>
+      )}
     </Box>
   );
 };

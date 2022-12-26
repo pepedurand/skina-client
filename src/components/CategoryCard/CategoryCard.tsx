@@ -57,7 +57,7 @@ export const CategoryCard = ({
           src="https://www.discstore.com/media/catalog/product/cache/c88af0b9efa8c07a49eb968599ee58b3/d/s/ds_peperonipizza.jpg"
         />
         <Box display="flex" flexDir="column" alignItems="center">
-          <Text fontFamily="Fugaz One" fontSize="20px">
+          <Text fontFamily="Fugaz One" color="#901313" fontSize="20px">
             {size}
           </Text>
           <Text fontSize="14px">{description}</Text>

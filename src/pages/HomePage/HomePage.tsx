@@ -7,8 +7,20 @@ import {
   OpeningTime,
 } from "../../components";
 import { useRequest } from "../../hooks";
-import { getCombos, getDrinks, getPizzas, getSizes } from "../../services";
-import { ComboData, DrinkData, PizzaData, SizeData } from "../../types/";
+import {
+  getCombos,
+  getDrinks,
+  getExtras,
+  getPizzas,
+  getSizes,
+} from "../../services";
+import {
+  ComboData,
+  DrinkData,
+  ExtraData,
+  PizzaData,
+  SizeData,
+} from "../../types/";
 
 export const HomePage = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -17,6 +29,7 @@ export const HomePage = () => {
   const drinks = useRequest(getDrinks());
   const combos = useRequest(getCombos());
   const sizes = useRequest(getSizes());
+  const extras = useRequest(getExtras());
 
   return (
     <>
@@ -69,6 +82,12 @@ export const HomePage = () => {
                 title={data.name}
               />
             );
+          })}
+        />
+        <CollapsibleMenu
+          title="Extras"
+          children={extras.map((data: ExtraData) => {
+            return <ItemCard price={data.price} title={data.name} />;
           })}
         />
       </Box>

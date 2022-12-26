@@ -25,3 +25,9 @@ export interface SizeData {
   description: string;
   price: number;
 }
+
+export interface ExtraData {
+  extra_id: string;
+  name: string;
+  price: number;
+}
