@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import {
   CategoryCard,
   CollapsibleMenu,
@@ -7,16 +7,16 @@ import {
   OpeningTime,
 } from "../../components";
 import { useRequest } from "../../hooks";
-import { sizes } from "../../mocks/sizesMock";
-import { getCombos, getDrinks, getPizzas } from "../../services";
-import { getSizes } from "../../services/getSizes";
+import { getCombos, getDrinks, getPizzas, getSizes } from "../../services";
 import { ComboData, DrinkData, PizzaData, SizeData } from "../../types/";
 
 export const HomePage = () => {
+  const { isOpen, onToggle } = useDisclosure();
+
   const pizzas = useRequest(getPizzas());
   const drinks = useRequest(getDrinks());
   const combos = useRequest(getCombos());
-  // const sizes = useRequest(getSizes());
+  const sizes = useRequest(getSizes());
 
   return (
     <>
@@ -24,17 +24,28 @@ export const HomePage = () => {
       <OpeningTime />
       <Box display="flex" flexWrap="wrap" justifyContent="center">
         <CollapsibleMenu title="Pizzas">
-          <CategoryCard sizes={sizes}>
-            {pizzas.map((data: PizzaData) => {
-              return (
-                <ItemCard
-                  details={data.description}
-                  price={data.additional_price}
-                  title={data.name}
-                />
-              );
-            })}
-          </CategoryCard>
+          {sizes.map((size: SizeData) => {
+            return (
+              <CategoryCard
+                size={size.size}
+                price={size.price}
+                onToggle={onToggle}
+                isOpen={isOpen}
+                description={size.description}
+              >
+                {pizzas.map((data: PizzaData) => {
+                  return (
+                    <ItemCard
+                      basePrice={size.price}
+                      details={data.description}
+                      price={data.additional_price}
+                      title={data.name}
+                    />
+                  );
+                })}
+              </CategoryCard>
+            );
+          })}
         </CollapsibleMenu>
         <CollapsibleMenu
           title="Drinks"
@@ -49,7 +60,7 @@ export const HomePage = () => {
           })}
         />
         <CollapsibleMenu
-          title="Combo"
+          title="Combos"
           children={combos.map((data: ComboData) => {
             return (
               <ItemCard
