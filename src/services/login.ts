@@ -2,13 +2,9 @@ import axios from "axios";
 import { LoginData } from "../types";
 import { BASE_URL } from "../utils";
 
-interface LoginProps {
-  body: LoginData;
-}
-
-export const login = async (body: LoginProps) => {
+export const login = async (body: LoginData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/login`, body);
+    const response = await axios.post(`${BASE_URL}login`, body);
     localStorage.setItem("token", response.data.token);
     alert(response.data.message);
     return response.data;

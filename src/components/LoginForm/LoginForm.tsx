@@ -3,6 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./validator";
 import { FormInput } from "../common";
 import { Button } from "@chakra-ui/react";
+import { login } from "../../services";
+import { LoginData } from "../../types";
+import { useAppNavigate } from "../../router/coordinator";
 
 export const LoginForm = () => {
   const methods = useForm({
@@ -10,10 +13,23 @@ export const LoginForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const { goToHome } = useAppNavigate();
+
+  const body = methods.getValues();
+
+  const onSubmitForm = async () => {
+    console.log(methods.getValues());
+    const loginResponse = await login(body as unknown as LoginData);
+    if (loginResponse.user.role === "admin") {
+      alert("Bem vindo admin");
+    } else {
+      alert("Bem vindo user");
+    }
+    goToHome();
+  };
 
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)}>
+    <form onSubmit={methods.handleSubmit(onSubmitForm)}>
       <FormProvider {...methods}>
         <FormInput
           placeholder="Insira seu e-mail"
