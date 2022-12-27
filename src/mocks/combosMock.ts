@@ -1,4 +1,4 @@
-import { ComboData } from "../types/listsTypes";
+import { ComboData } from "../types/types";
 
 export const combos: ComboData[] = [
   {

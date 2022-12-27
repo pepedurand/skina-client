@@ -1,10 +1,6 @@
 import axios from "axios";
+import { LoginData } from "../types";
 import { BASE_URL } from "../utils";
-
-export interface LoginData {
-  email: string;
-  password: string;
-}
 
 interface LoginProps {
   body: LoginData;

@@ -1,4 +1,4 @@
-import { DrinkData } from "../types/listsTypes";
+import { DrinkData } from "../types/types";
 
 export const drinks: DrinkData[] = [
   {

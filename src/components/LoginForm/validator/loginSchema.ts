@@ -1,12 +1,13 @@
 import * as yup from "yup";
+import { LoginData } from "../../../types";
 
 const INPUT_PASSWORD_MESSAGE = "A senha deve ter pelo menos 6 caracteres";
 const INPUT_INVALID_EMAIL = "Insira um e-mail válido";
 const REQUIRED_VALIDATION = (label: string) => {
-  return `${label} é obrigatório!`;
+  return `${label} é obrigatório.`;
 };
 
-export const loginSchema = yup
+export const loginSchema: yup.SchemaOf<LoginData> = yup
   .object()
   .shape({
     email: yup

@@ -1,1 +1,1 @@
-export * from "./listsTypes";
+export * from "./types";

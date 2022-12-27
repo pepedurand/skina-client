@@ -31,3 +31,8 @@ export interface ExtraData {
   name: string;
   price: number;
 }
+
+export interface LoginData {
+  email: string;
+  password: string;
+}

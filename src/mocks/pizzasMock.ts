@@ -1,4 +1,4 @@
-import { PizzaData } from "../types/listsTypes";
+import { PizzaData } from "../types/types";
 
 export const pizzas: PizzaData[] = [
   {
