@@ -1,7 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { Box, Collapse, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { SIZES } from "../../utils/";
 
 interface CategoryCardProps {
   children?: JSX.Element[] | JSX.Element;
@@ -16,21 +15,10 @@ export const CategoryCard = ({
   description,
   price,
 }: CategoryCardProps) => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuIdentifier = () => {
-    setSelectedCategory(size);
-    selectedCategory === size ?? setSelectedCategory("");
-  };
-
-  const isMenuOpened = () => {
-    if (
-      [SIZES.BROTO, SIZES.FAMILIA, SIZES.MEDIA, SIZES.SUPERGG].includes(
-        selectedCategory as SIZES
-      )
-    ) {
-      return true;
-    } else return false;
+  const expandMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -39,7 +27,7 @@ export const CategoryCard = ({
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        onClick={menuIdentifier}
+        onClick={expandMenu}
       >
         <Image
           height="100px"
@@ -63,9 +51,9 @@ export const CategoryCard = ({
             </Text>
           </Box>
         </Box>
-        {isMenuOpened() ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        {isMenuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </Box>
-      <Collapse in={isMenuOpened()} animateOpacity>
+      <Collapse in={isMenuOpen} animateOpacity>
         {children}
       </Collapse>
     </Box>
