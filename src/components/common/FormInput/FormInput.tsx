@@ -11,8 +11,6 @@ interface FormInputProps extends InputProps {
   htmlFor: string;
   label: string;
   name: string;
-  hasError: boolean;
-  errorMessage: string;
 }
 
 export const FormInput = ({
@@ -20,18 +18,27 @@ export const FormInput = ({
   label,
   name,
   placeholder,
-  hasError,
-  errorMessage,
 }: FormInputProps) => {
-  const { register } = useFormContext(); // retrieve all hook methods
+  const { register, getFieldState, formState } = useFormContext();
+  const fieldState = getFieldState(name, formState);
+
   return (
-    <FormControl>
-      <FormLabel fontFamily={"Inria Sans"} htmlFor={htmlFor}>
+    <FormControl marginTop="15px">
+      <FormLabel
+        color={!!fieldState.error ? "red" : undefined}
+        fontFamily={"Inria Sans"}
+        htmlFor={htmlFor}
+      >
         {label}
       </FormLabel>
-      <Input id={name} placeholder={placeholder} {...register(name)} />
+      <Input
+        isInvalid={!!fieldState.error}
+        id={name}
+        placeholder={placeholder}
+        {...register(name)}
+      />
       <FormHelperText color="red">
-        {hasError && <>{errorMessage}</>}
+        {!!fieldState.error && <>{fieldState.error?.message}</>}
       </FormHelperText>
     </FormControl>
   );

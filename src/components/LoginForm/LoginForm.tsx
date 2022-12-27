@@ -22,8 +22,6 @@ export const LoginForm = () => {
             label="E-mail"
             name="email"
             id="name"
-            hasError={!!methods.formState.errors.email}
-            errorMessage={methods.formState.errors.email?.message as string}
           />
           <FormInput
             placeholder="Insira sua senha"
@@ -31,10 +29,7 @@ export const LoginForm = () => {
             label="Senha"
             name="password"
             id="password"
-            hasError={!!methods.formState.errors.password}
-            errorMessage={methods.formState.errors.password?.message as string}
           />
-
           <input type="submit" />
         </FormProvider>
       </form>
