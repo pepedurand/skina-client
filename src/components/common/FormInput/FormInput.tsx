@@ -23,7 +23,7 @@ export const FormInput = ({
   const fieldState = getFieldState(name, formState);
 
   return (
-    <FormControl marginTop="15px">
+    <FormControl marginTop="20px">
       <FormLabel
         color={!!fieldState.error ? "red" : undefined}
         fontFamily={"Inria Sans"}

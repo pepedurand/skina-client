@@ -2,6 +2,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./validator";
 import { FormInput } from "../common";
+import { Button } from "@chakra-ui/react";
 
 export const LoginForm = () => {
   const methods = useForm({
@@ -28,7 +29,16 @@ export const LoginForm = () => {
           name="password"
           id="password"
         />
-        <input type="submit" />
+        <Button
+          fontFamily="Inria Sans"
+          marginTop="30px"
+          fontSize="14px"
+          backgroundColor="#560000"
+          type="submit"
+          w="100%"
+        >
+          Login
+        </Button>
       </FormProvider>
     </form>
   );
