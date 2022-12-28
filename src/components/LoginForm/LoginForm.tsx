@@ -2,30 +2,44 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./validator";
 import { FormInput } from "../common";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { login } from "../../services";
 import { LoginData } from "../../types";
 import { useAppNavigate } from "../../router/coordinator";
+import { useAuth } from "../../hooks/";
 
 export const LoginForm = () => {
+  const { setAuth } = useAuth();
+  const { goToHome, goToAdminHome } = useAppNavigate();
+  const toast = useToast();
+
   const methods = useForm({
     mode: "onSubmit",
     resolver: yupResolver(loginSchema),
   });
 
-  const { goToHome } = useAppNavigate();
-
   const body = methods.getValues();
 
   const onSubmitForm = async () => {
-    console.log(methods.getValues());
     const loginResponse = await login(body as unknown as LoginData);
-    if (loginResponse.user.role === "admin") {
-      alert("Bem vindo admin");
+    const userName = loginResponse.user.name;
+    const accessToken = loginResponse.token;
+    const role = loginResponse.user.role;
+    setAuth({ userName, role, accessToken });
+    localStorage.setItem("token", accessToken);
+
+    toast({
+      title: `Bem vindo ${userName}`,
+      position: "top",
+      isClosable: true,
+      status: "success",
+      duration: 9000,
+    });
+    if (role === "admin") {
+      goToAdminHome();
     } else {
-      alert("Bem vindo user");
+      goToHome();
     }
-    goToHome();
   };
 
   return (

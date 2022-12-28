@@ -12,5 +12,8 @@ export const useAppNavigate = () => {
   const goToSignUp = () => {
     navigate(`/signup`);
   };
-  return { goToLogin, goToHome, goToSignUp };
+  const goToAdminHome = () => {
+    navigate(`/admin/edit`);
+  };
+  return { goToLogin, goToHome, goToSignUp, goToAdminHome };
 };

@@ -5,3 +5,4 @@ export * from "./CollapsibleMenu";
 export * from "./ItemCard";
 export * from "./CategoryCard";
 export * from "./LoginForm";
+export * from "./RequireAuth";
