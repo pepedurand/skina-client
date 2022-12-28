@@ -1,19 +1,25 @@
 import React, { ReactNode, useState } from "react";
-import { LoginData } from "../types";
+import { ROLES } from "../utils";
 
-type UserContextType = {
-  user: LoginData[];
-  saveUser: (user: LoginData) => void;
-};
+interface AuthData {
+  userName: string;
+  role: ROLES;
+  accessToken: string;
+}
+
+interface AuthContext {
+  auth: AuthData | undefined;
+  setAuth: (newState: AuthData) => void;
+}
 
 interface AuthContextProps {
   children: ReactNode;
 }
 
-const AuthContext = React.createContext<any | undefined>(undefined);
+const AuthContext = React.createContext<AuthContext>({} as AuthContext);
 
 const AuthContextProvider = ({ children }: AuthContextProps) => {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState<AuthData>();
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
