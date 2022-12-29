@@ -1,3 +1,9 @@
+import { AdminEditItem } from "../../components/AdminEditItem";
+
 export const AdminHomePage = () => {
-  return <>Admin HomePage</>;
+  return (
+    <>
+      <AdminEditItem text="oi" />
+    </>
+  );
 };
