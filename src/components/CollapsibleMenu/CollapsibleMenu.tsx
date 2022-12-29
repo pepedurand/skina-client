@@ -1,6 +1,6 @@
 import { Box, Collapse, Text, useDisclosure } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { EditItemText } from "../EditItemText";
+import { AdminEditItem } from "../AdminEditItem";
 
 interface CollapsibleMenuProps {
   title: string;
@@ -26,7 +26,7 @@ export const CollapsibleMenu = ({
         color="#901313"
       >
         <Text fontFamily="Fugaz One" fontSize="30px">
-          {isEditable ? <EditItemText textOrValue={title} /> : <>{title}</>}
+          {isEditable ? <AdminEditItem textOrValue={title} /> : <>{title}</>}
         </Text>
         {isOpen ? (
           <ChevronUpIcon onClick={onToggle} width="50px" />

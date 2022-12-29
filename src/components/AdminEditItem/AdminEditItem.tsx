@@ -1,5 +1,4 @@
 import {
-  Box,
   Editable,
   EditableInput,
   EditablePreview,
@@ -11,7 +10,7 @@ interface AdminEditItemProps {
   isDescription?: boolean;
 }
 
-export const EditItemText = ({
+export const AdminEditItem = ({
   textOrValue,
   isDescription,
 }: AdminEditItemProps) => {

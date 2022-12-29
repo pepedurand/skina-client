@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { EditItemText } from "../EditItemText";
+import { AdminEditItem } from "../AdminEditItem";
 
 interface ItemCardProps {
   title: string;
@@ -27,7 +27,7 @@ export const ItemCard = ({
         height="40px"
       >
         <Text fontSize="18px" maxWidth="220px">
-          {isEditable ? <EditItemText textOrValue={title} /> : <>{title}</>}
+          {isEditable ? <AdminEditItem textOrValue={title} /> : <>{title}</>}
         </Text>
 
         <Text
@@ -40,7 +40,7 @@ export const ItemCard = ({
           <Box display="flex" alignItems="center">
             <Box marginRight="5px">R$</Box>
             {isEditable ? (
-              <EditItemText textOrValue={finalPrice} />
+              <AdminEditItem textOrValue={finalPrice} />
             ) : (
               <>{finalPrice}</>
             )}
@@ -50,7 +50,7 @@ export const ItemCard = ({
       {details && (
         <Text width="200px" height="50px" fontSize="14px">
           {isEditable ? (
-            <EditItemText textOrValue={details} isDescription />
+            <AdminEditItem textOrValue={details} isDescription />
           ) : (
             <>{details}</>
           )}
