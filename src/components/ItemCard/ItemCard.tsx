@@ -1,10 +1,12 @@
 import { Box, Text } from "@chakra-ui/react";
+import { EditItemText } from "../EditItemText";
 
 interface ItemCardProps {
   title: string;
   details?: string;
   price: number;
   basePrice?: number;
+  isEditable?: boolean;
 }
 
 export const ItemCard = ({
@@ -12,24 +14,46 @@ export const ItemCard = ({
   details,
   price,
   basePrice,
+  isEditable,
 }: ItemCardProps) => {
+  const finalPrice = `${(basePrice ? price + basePrice : price).toFixed(2)}`;
+
   return (
     <Box alignItems="center" padding="10px" height="101px" bgColor="#FFB800">
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        marginTop="6px"
+        height="40px"
       >
-        <Text fontSize="18px">{title}</Text>
+        <Text fontSize="18px" maxWidth="220px">
+          {isEditable ? <EditItemText textOrValue={title} /> : <>{title}</>}
+        </Text>
 
-        <Text fontSize="18px" fontFamily="Chewy" color="#901313">
-          R$ {basePrice ? price + basePrice : price}
+        <Text
+          fontSize="18px"
+          fontFamily="Chewy"
+          color="#901313"
+          height="30px"
+          width="80px"
+        >
+          <Box display="flex" alignItems="center">
+            <Box marginRight="5px">R$</Box>
+            {isEditable ? (
+              <EditItemText textOrValue={finalPrice} />
+            ) : (
+              <>{finalPrice}</>
+            )}
+          </Box>
         </Text>
       </Box>
-      {details ?? (
-        <Text width="200px" height="48px" fontSize="14px">
-          {details}
+      {details && (
+        <Text width="200px" height="50px" fontSize="14px">
+          {isEditable ? (
+            <EditItemText textOrValue={details} isDescription />
+          ) : (
+            <>{details}</>
+          )}
         </Text>
       )}
     </Box>

@@ -1,5 +1,4 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import { ROLES } from "../../utils/roles";
 import jwt from "jwt-decode";
 
@@ -17,7 +16,7 @@ interface TokenData {
 const token = localStorage.getItem("token");
 
 export const RequireAuth = ({ allowedRoles }: AllowedRolesProps) => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const location = useLocation();
 
   const data: TokenData | undefined = token ? jwt(token) : undefined;

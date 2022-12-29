@@ -7,7 +7,7 @@ interface AuthData {
   accessToken: string;
 }
 
-interface AuthContext {
+interface AuthContextData {
   auth: AuthData | undefined;
   setAuth: (newState: AuthData) => void;
 }
@@ -16,7 +16,7 @@ interface AuthContextProps {
   children: ReactNode;
 }
 
-const AuthContext = React.createContext<AuthContext>({} as AuthContext);
+const AuthContext = React.createContext<AuthContextData>({} as AuthContextData);
 
 const AuthContextProvider = ({ children }: AuthContextProps) => {
   const [auth, setAuth] = useState<AuthData>();
