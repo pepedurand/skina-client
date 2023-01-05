@@ -36,6 +36,7 @@ export const AdminHomePage = () => {
           {sizes.map((size: SizeData) => {
             return (
               <CategoryCard
+                isEditable
                 size={size.size}
                 price={size.price}
                 description={size.description}

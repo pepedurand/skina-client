@@ -8,14 +8,19 @@ import {
 interface AdminEditItemProps {
   textOrValue: string;
   isDescription?: boolean;
+  isCategoryCard?: boolean;
 }
 
 export const AdminEditItem = ({
   textOrValue,
   isDescription,
+  isCategoryCard,
 }: AdminEditItemProps) => {
   return (
-    <Editable defaultValue={textOrValue}>
+    <Editable
+      textAlign={isCategoryCard ? "center" : "left"}
+      defaultValue={textOrValue}
+    >
       <EditablePreview />
       {isDescription ? <EditableTextarea /> : <EditableInput />}
     </Editable>
